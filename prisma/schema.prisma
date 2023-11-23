@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  email String @unique @db.VarChar(100)
+  name String @db.VarChar(100)
+  password String @db.VarChar(100)
+  token String? @db.VarChar(100)
+  history History[]
+  @@map("User")
+}
+
+model History{
+  id Int @default(autoincrement())
+  user_id Int
+  campaign_id Int
+  user User @relation(fields: [user_id], references: [id])
+  campaign Campaign @relation(fields: [campaign_id], references: [id])
+  food String @db.VarChar(50)
+  quantity Int
+  expiredDate DateTime
+  pickupLocation String @db.VarChar(60)
+  date DateTime @default(now())
+
+  @@id([id,user_id,campaign_id])
+}
+
+model Campaign{
+  id Int @id @default(autoincrement())
+  owner Int 
+  name String @db.VarChar(100)
+  img String @db.VarChar(300)
+  reached Int @default(0)
+  target Int 
+  deadline DateTime
+  startFromIdr Decimal
+  location String @db.VarChar(60)
+  longitude Decimal
+  latitude Decimal
+  description String @db.VarChar(500)
+  specificFood String @db.VarChar(500)
+  history History[]
+
+  @@map("campaign")
+}
+
+
