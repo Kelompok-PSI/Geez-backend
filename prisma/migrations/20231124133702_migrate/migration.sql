@@ -12,16 +12,16 @@ CREATE TABLE `User` (
 
 -- CreateTable
 CREATE TABLE `History` (
-    `id` INTEGER NOT NULL,
-    `member_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `user_id` INTEGER NOT NULL,
     `campaign_id` INTEGER NOT NULL,
     `food` VARCHAR(50) NOT NULL,
     `quantity` INTEGER NOT NULL,
     `expiredDate` DATETIME(3) NOT NULL,
     `pickupLocation` VARCHAR(60) NOT NULL,
-    `date` DATETIME(3) NOT NULL,
+    `date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    PRIMARY KEY (`id`, `member_id`, `campaign_id`)
+    PRIMARY KEY (`id`, `user_id`, `campaign_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -44,7 +44,7 @@ CREATE TABLE `campaign` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `History` ADD CONSTRAINT `History_member_id_fkey` FOREIGN KEY (`member_id`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `History` ADD CONSTRAINT `History_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `History` ADD CONSTRAINT `History_campaign_id_fkey` FOREIGN KEY (`campaign_id`) REFERENCES `campaign`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

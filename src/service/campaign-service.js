@@ -10,16 +10,17 @@ const getAllCampaign = async () => {
 }
 
 const findCampaign = async (campaignId) => {
-  campaignId = parseInt(campaignId)
-  
-  validate(searchCampaignValidation, campaignId)
+  const campId = parseInt(campaignId)
+
+  validate(searchCampaignValidation, campId)
   const campaign = await prismaClient.campaign.findFirst({
     where: {
-      id: campaignId,
+      id: campId,
     }
   })
 
-  if (!campaign) {
+  if (!campaign)
+  {
     throw new ResponseError(404, "campaign is Not Found")
   }
   return campaign

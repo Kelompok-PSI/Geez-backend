@@ -13,7 +13,8 @@ const donate = async (req) => {
       target: true
     }
   })
-  if (reachedCurrently.reached + req.quantity >= reachedCurrently.target) {
+  if (reachedCurrently.reached + req.quantity >= reachedCurrently.target)
+  {
     throw new ResponseError(401, "Total with Your Donation is Pass the Maximum of Donation")
   }
 
@@ -48,6 +49,7 @@ const getAllHistory = async (req) => {
       user_id: req.user_id
     }
   })
+  return result
 }
 
 export default { donate, updateCampaign, getAllHistory }
