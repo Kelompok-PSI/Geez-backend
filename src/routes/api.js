@@ -8,8 +8,9 @@ const privateRouter = express.Router()
 
 privateRouter.use(authMiddleware);
 
-privateRouter.post('/api/logout', userController.logout); // logout
+privateRouter.post('/api/logout', userController.logout);
 privateRouter.get('/api/campaign', campaignController.getAllCampaign)
+privateRouter.get('/api/campaign/nearest', campaignController.getAllCampaign)
 privateRouter.get('/api/campaign/:campaignId', campaignController.findCampaign)
 
 privateRouter.post('/api/donate', historyController.makeADonation)

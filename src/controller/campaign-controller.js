@@ -23,4 +23,15 @@ const findCampaign = async (req, res, next) => {
   }
 }
 
-export default { getAllCampaign, findCampaign }
+const campaignByNearest = async (req, res, next) => {
+  try {
+    const result = await campaignService.campaignSortByNearest(req)
+    res.status(200).json({
+      data: result
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default { getAllCampaign, findCampaign, campaignByNearest }
