@@ -13,5 +13,6 @@ privateRouter.get('/api/campaign', campaignController.getAllCampaign)
 privateRouter.get('/api/campaign/:campaignId', campaignController.findCampaign)
 
 privateRouter.post('/api/donate', historyController.makeADonation)
+privateRouter.get("/api/history", historyController.getAllHistory)
 
 export { privateRouter }
