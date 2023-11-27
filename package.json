@@ -7,7 +7,8 @@
     "start": "nodemon src/main.js",
     "build": "webpack",
     "prod": "node dist/final.cjs",
-    "test": "jest -i"
+    "test": "jest -i",
+    "prisma:seed": "node prisma/seed.js"
   },
   "jest": {
     "transform": {

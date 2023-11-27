@@ -4,7 +4,7 @@ import { donateValidation } from "../validation/history-validation.js"
 import { validate } from "../validation/validation.js"
 
 const donate = async (req) => {
-  const valid = validate(donateValidation, req)
+  const valid = validate(donateValidation, req.body)
   const reachedCurrently = await prismaClient.campaign.findFirst({
     where: {
       id: req.campaign_id
@@ -17,9 +17,11 @@ const donate = async (req) => {
   {
     throw new ResponseError(401, "Total with Your Donation is Pass the Maximum of Donation")
   }
-
   const donation = await prismaClient.history.create({
-    data: valid
+    data: {
+      ...valid,
+      user_id: req.user.id
+    }
   })
   return donation;
 }

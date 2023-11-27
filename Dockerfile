@@ -7,10 +7,10 @@ COPY dist/final.cjs ./final.cjs
 COPY prisma/ ./prisma/
 COPY package*.json . 
 RUN npm ci
+RUN npx prisma generate
 
-RUN npx prisma migrate 
-RUN npx prisma generate 
-
+RUN npx prisma migrate dev 
+RUN ["node","./prisma/seed.js"]
+RUN npx prisma studio
 ENV PATH=/usr/local/bin:$PATH
-RUN rm -f package*.json
 CMD ["node","./final.cjs"]

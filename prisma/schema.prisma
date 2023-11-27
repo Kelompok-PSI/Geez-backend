@@ -46,10 +46,11 @@ model Campaign{
   deadline DateTime
   startFromIdr Decimal
   location String @db.VarChar(60)
+  rules String @db.VarChar(60)
   longitude Decimal
   latitude Decimal
-  description String @db.VarChar(500)
-  specificFood String @db.VarChar(500)
+  description String @db.VarChar(1000)
+  specificFood String @db.VarChar(1000)
   history History[]
 
   @@map("campaign")

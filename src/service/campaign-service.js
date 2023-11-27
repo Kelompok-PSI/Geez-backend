@@ -22,7 +22,8 @@ const findCampaign = async (campaignId) => {
     }
   })
 
-  if (!campaign) {
+  if (!campaign)
+  {
     throw new ResponseError(404, "campaign is Not Found")
   }
   return campaign
@@ -42,11 +43,9 @@ const campaignSortByNearest = async (location) => {
     return { campaign, distance }
   })
   campaignsWithDistances.sort((a, b) => a.distance - b.distance);
-  
   const sortedCampaigns = campaignsWithDistances.map(
     (campaignWithDistance) => campaignWithDistance.campaign
   );
-
   return { sortedCampaigns }
 }
 

@@ -3,7 +3,7 @@ import historyService from "../service/history-service.js"
 const makeADonation = async (req, res, next) => {
   try
   {
-    const history = await historyService.donate(req.body)
+    const history = await historyService.donate(req)
     const donation = await historyService.updateCampaign(req.body)
     res.status(200).json({
       data: donation
