@@ -35,10 +35,11 @@ CREATE TABLE `campaign` (
     `deadline` DATETIME(3) NOT NULL,
     `startFromIdr` DECIMAL(65, 30) NOT NULL,
     `location` VARCHAR(60) NOT NULL,
+    `rules` VARCHAR(60) NOT NULL,
     `longitude` DECIMAL(65, 30) NOT NULL,
     `latitude` DECIMAL(65, 30) NOT NULL,
-    `description` VARCHAR(500) NOT NULL,
-    `specificFood` VARCHAR(500) NOT NULL,
+    `description` VARCHAR(1000) NOT NULL,
+    `specificFood` VARCHAR(1000) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

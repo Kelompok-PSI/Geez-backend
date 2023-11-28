@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const prisma = new PrismaClient();
 
@@ -12,7 +14,7 @@ async function seed() {
         reached: 0,
         target: 1000,
         deadline: new Date("2023-12-31T23:59:59Z"),
-        startFromIdr: 5000.50,
+        startFromIdr: 5000.5,
         location: "Location",
         rules: "Dry Food",
         longitude: 112.6048483978392,
@@ -27,54 +29,52 @@ async function seed() {
         reached: 500,
         target: 1000,
         deadline: new Date("2023-12-31T23:59:59Z"),
-        startFromIdr: 5000.50,
+        startFromIdr: 5000.5,
         location: "Sample Location",
         rules: "Dry Food",
         longitude: 112.6094403396728,
         latitude: -7.951284270304239,
         description: "South Malang Food Donation",
         specificFood: "Specific food details.",
-      }, {
+      },
+      {
         owner: 1, // Replace with the actual owner ID
         name: "West Malang Food Donation by FAO UN",
         img: "https://example.com/image1.jpg",
         reached: 90000,
         target: 10000,
         deadline: new Date("2023-12-31T23:59:59Z"),
-        startFromIdr: 5000.50,
+        startFromIdr: 5000.5,
         location: "Sample Location",
         rules: "Dry Food",
         longitude: 123.456,
         latitude: 789.012,
         description: "West Malang Food Donation by FAO UN",
         specificFood: "Specific food details.",
-      }, {
-
+      },
+      {
         owner: 1, // Replace with the actual owner ID
         name: "Food Donation For Zero Hunger SDGs",
         img: "https://example.com/image1.jpg",
         reached: 800,
         target: 1000,
         deadline: new Date("2023-12-31T23:59:59Z"),
-        startFromIdr: 5000.50,
+        startFromIdr: 5000.5,
         location: "Sample Location",
         rules: "Dry Food",
         longitude: 123.456,
         latitude: 789.012,
         description: "Food Donation For Zero Hunger SDGs",
         specificFood: "Specific food details.",
-      }
-    ]
-  })
+      },
+    ],
+  });
 }
 
-
-try
-{
+try {
   await seed();
   await prisma.$disconnect();
-} catch (e)
-{
+} catch (e) {
   console.error(e);
   await prisma.$disconnect();
   process.exit(1);
