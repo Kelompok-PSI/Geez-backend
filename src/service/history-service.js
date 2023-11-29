@@ -49,7 +49,10 @@ const getAllHistory = async (req) => {
   const result = await prismaClient.history.findMany({
     where: {
       user_id: req.user_id
-    }
+    },
+    include: {
+      campaign: true
+    },
   })
   return result
 }
